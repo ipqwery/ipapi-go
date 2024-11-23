@@ -18,13 +18,13 @@ A Go package to query IP addresses using the [ipquery.io](https://ipquery.io) AP
 To install the package, run:
 
 ```bash
-go get github.com/ipqwery/go-ipapi
+go get github.com/ipqwery/ipapi-go
 ```
 
 ## Importing the Package
 
 ```go
-import "github.com/ipqwery/go-ipapi"
+import "github.com/ipqwery/ipapi-go"
 ```
 
 ## Usage Examples
@@ -38,7 +38,7 @@ package main
 
 import (
     "fmt"
-    "github.com/ipqwery/go-ipapi"
+    "github.com/ipqwery/ipapi-go"
 )
 
 func main() {
