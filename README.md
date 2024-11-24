@@ -178,5 +178,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Links
 
-- [GitHub Repository](https://github.com/ipqwery/go-ipapi)
-- [pkg.go.dev Documentation](https://pkg.go.dev/github.com/ipqwery/go-ipapi)
+- [GitHub Repository](https://github.com/ipqwery/ipapi-go)
+- [pkg.go.dev Documentation](https://pkg.go.dev/github.com/ipqwery/ipapi-go)
