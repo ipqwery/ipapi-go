@@ -1,3 +1,3 @@
-module github.com/ipqwery/go-ipapi
+module github.com/ipqwery/ipapi-go
 
 go 1.23.3
