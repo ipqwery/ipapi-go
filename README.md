@@ -1,4 +1,4 @@
-# go-ipapi
+# ipapi-go
 
 A Go package to query IP addresses using the [ipquery.io](https://ipquery.io) API.
 
@@ -65,7 +65,7 @@ package main
 
 import (
     "fmt"
-    "github.com/ipqwery/go-ipapi"
+    "github.com/ipqwery/ipapi-go"
 )
 
 func main() {
