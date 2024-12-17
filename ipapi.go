@@ -3,7 +3,7 @@ package ipapi
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -41,8 +41,8 @@ type RiskInfo struct {
 
 // IPInfo represents all the information returned by the API.
 type IPInfo struct {
-	IP       string       `json:"ip"`
-	ISP      *ISPInfo     `json:"isp,omitempty"`
+	IP       string        `json:"ip"`
+	ISP      *ISPInfo      `json:"isp,omitempty"`
 	Location *LocationInfo `json:"location,omitempty"`
 	Risk     *RiskInfo     `json:"risk,omitempty"`
 }
@@ -60,7 +60,7 @@ func QueryIP(ip string) (*IPInfo, error) {
 		return nil, fmt.Errorf("failed to fetch IP info: status code %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func QueryOwnIP() (string, error) {
 		return "", fmt.Errorf("failed to fetch own IP: status code %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
 	}
