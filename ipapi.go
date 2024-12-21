@@ -1,13 +1,14 @@
 package ipapi
 
 import (
-	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
+	jsoniter "github.com/json-iterator/go"
+	"github.com/valyala/fasthttp"
 )
 
-const BaseURL = "https://api.ipquery.io/"
+var baseURL = "https://api.ipquery.io/"
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // ISPInfo represents information about the ISP of an IP address.
 type ISPInfo struct {
@@ -49,20 +50,13 @@ type IPInfo struct {
 
 // QueryIP fetches information for a specific IP address.
 func QueryIP(ip string) (*IPInfo, error) {
-	url := fmt.Sprintf("%s%s", BaseURL, ip)
-	resp, err := http.Get(url)
+	statusCode, body, err := fasthttp.Get(nil, baseURL+ip)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("failed to fetch IP info: status code %d", resp.StatusCode)
-	}
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
+	if statusCode != fasthttp.StatusOK {
+		return nil, fmt.Errorf("failed to fetch IP info: status code %d", statusCode)
 	}
 
 	var ipInfo IPInfo
@@ -75,19 +69,13 @@ func QueryIP(ip string) (*IPInfo, error) {
 
 // QueryOwnIP fetches information about the current machine's public IP.
 func QueryOwnIP() (string, error) {
-	resp, err := http.Get(BaseURL)
+	statusCode, body, err := fasthttp.Get(nil, baseURL)
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("failed to fetch own IP: status code %d", resp.StatusCode)
-	}
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", err
+	if statusCode != fasthttp.StatusOK {
+		return "", fmt.Errorf("failed to fetch own IP: status code %d", statusCode)
 	}
 
 	return string(body), nil
