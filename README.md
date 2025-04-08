@@ -4,7 +4,7 @@ A Go package to query IP addresses using the [ipquery.io](https://ipquery.io) AP
 
 ## Overview
 
-`go-ipapi` is a lightweight Go package that allows you to fetch detailed information about IP addresses, including ISP details, location data, and risk assessment, using the `ipquery.io` API. You can use this package to query individual IP addresses, perform bulk lookups, and even find out your own public IP address.
+`ipapi-go` is a lightweight Go package that allows you to fetch detailed information about IP addresses, including ISP details, location data, and risk assessment, using the `ipquery.io` API. You can use this package to query individual IP addresses, perform bulk lookups, and even find out your own public IP address.
 
 ## Features
 
