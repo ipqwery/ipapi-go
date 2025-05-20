@@ -2,13 +2,12 @@ package ipapi
 
 import (
 	"fmt"
-	jsoniter "github.com/json-iterator/go"
+
+	"github.com/goccy/go-json"
 	"github.com/valyala/fasthttp"
 )
 
 var baseURL = "https://api.ipquery.io/"
-
-var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // ISPInfo represents information about the ISP of an IP address.
 type ISPInfo struct {
@@ -60,7 +59,7 @@ func QueryIP(ip string) (*IPInfo, error) {
 	}
 
 	var ipInfo IPInfo
-	if err := json.Unmarshal(body, &ipInfo); err != nil {
+	if err = json.Unmarshal(body, &ipInfo); err != nil {
 		return nil, err
 	}
 
